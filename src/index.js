@@ -4,11 +4,8 @@ const APP_NAME = "Base-Node-Alexa";
 var app = new alexa.app(APP_NAME);
 
 app.launch((request, response) => {
-    let speechOutput = "I'll record pack weight for you. What's your name?";
-    response
-        .say(speechOutput)
-        .reprompt("Sorry, I didn't get that")
-        .shouldEndSession(false);
+    let speechOutput = "Welcome";
+    response.say(speechOutput);
 });
 
 app.intent("AMAZON.HelpIntent",{}, (request, response) => {

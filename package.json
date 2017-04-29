@@ -1,7 +1,7 @@
 {
-  "name": "Alexa-Pack-weight",
+  "name": "Base-Node-Alexa",
   "version": "1.0.0",
-  "description": "Alexa app for recording pack weight to Google spreadsheet.",
+  "description": "Boilerplate code for Lambda Alexa Skill in NodeJS",
   "author": "David Merrick",
   "dependencies": {
     "alexa-app": "^4.0.0"
