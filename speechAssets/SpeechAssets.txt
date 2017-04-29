@@ -1,1 +1,1 @@
-Speech assets here
+AddPackWeightIntent Add pack weight of {weight} for user {user}
