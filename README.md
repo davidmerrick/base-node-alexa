@@ -1,4 +1,10 @@
-Boilerplate code for Lambda Alexa Skill in NodeJS.
+Lambda function which uses IBM's BlueMix to analyze tone of text. Written in NodeJS.
+
+## Reference
+
+* https://github.com/watson-developer-cloud/node-sdk/blob/master/examples/conversation_tone_analyzer_integration/tone_detection.js
+
+## Features
 
 * Includes gulp config for deployment 
 
