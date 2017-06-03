@@ -1,13 +1,13 @@
 {
-  "name": "lambda-tone-analyzer",
+  "name": "Base-Node-Alexa",
   "version": "1.0.0",
-  "description": "Uses IBM's BlueMix to analyze tone of text",
+  "description": "Boilerplate code for Lambda Alexa Skill in NodeJS",
   "author": "David Merrick",
   "dependencies": {
-    "alexa-sdk": "^1.0.9",
-    "watson-developer-cloud": "^2.32.1"
+    "alexa-sdk": "^1.0.9"
   },
   "devDependencies": {
+    "alexa-skill-test": "^1.1.1",
     "babel-preset-es2015": "^6.24.1",
     "del": "^2.2.2",
     "gulp": "^3.9.1",

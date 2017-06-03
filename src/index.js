@@ -1,31 +1,36 @@
-var ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
+'use strict';
 
-exports.handler = function index(event, context, callback){
-    let tone_analyzer = new ToneAnalyzerV3({
-        username: process.env.USERNAME,
-        password: process.env.PASSWORD,
-        version_date: process.env.VERSION_DATE || "2016-05-19"
-    });
+import Alexa from 'alexa-sdk'
 
-    let params = {
-        text: event.text
-    };
+const INVOCATION_NAME = process.env.INVOCATION_NAME || "Base Node Alexa";
+const APP_ID = process.env.APP_ID;
 
-    tone_analyzer.tone(params, (error, response) => {
-        if(error){
-            return callback(error);
-        }
+// Note: these functions can't be ES6 arrow functions; "this" ends up undefined if you do that.
+const handlers = {
+    'LaunchRequest': function () {
+        let speechOutput = `Welcome to ${INVOCATION_NAME}`;
+        this.emit(':ask', speechOutput, "What would you like to do?");
+    },
+    'AMAZON.HelpIntent': function () {
+        let speechOutput = `Welcome to ${INVOCATION_NAME}`;
+        this.emit(':ask', speechOutput, "What would you like to do?");
+    },
+    'AMAZON.StopIntent': function () {
+        let speechOutput = "Goodbye";
+        this.emit(':tell', speechOutput);
+    },
+    'AMAZON.CancelIntent': function () {
+        let speechOutput = "Okay";
+        this.emit(':tell', speechOutput);
+    }
+};
 
-        let documentTone = response.document_tone;
-        let tones = documentTone.tone_categories[0].tones;
-        let sorted = tones.sort((a,b) => b.score - a.score)
-        let foundTone = sorted[0];
-        let toneName = foundTone.tone_name;
-        let toneScore = foundTone.score;
-        let output = {
-            name: toneName,
-            score: toneScore
-        };
-        return callback(null, output);
-    });
-}
+exports.handler = (event, context, callback) => {
+    let alexa = Alexa.handler(event, context);
+    // Only set appId if not debugging
+    if ('undefined' === typeof process.env.DEBUG) {
+        alexa.appId = APP_ID;
+    }
+    alexa.registerHandlers(handlers);
+    alexa.execute();
+};
